@@ -42,11 +42,27 @@ public class PlayerController : MonoBehaviour
         {
             if (keyboardLetter.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == letter) {
                 Debug.Log("This is supposed to work!"); 
-                keyboardLetter.transform.GetComponent<UnityEngine.UI.Image>().color = new Color(0.3254902f, 0.5529412f, 0.3058824f);  
+                keyboardLetter.transform.GetComponent<UnityEngine.UI.Image>().color = new Color(255 / 255f, 255 / 255f, 0 / 255f);  
             }
         }
         Debug.Log("This letter does not exist on the current keyboard.");
         
+    }
+
+    public UnityEngine.UI.Image nGetKeyboardImage(string letter)
+    {
+       
+        letter = letter.ToUpper();
+
+        foreach (var keyboardLetter in keyboardcharacterButtons)
+        {
+            if (keyboardLetter.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == letter)
+            {
+                return keyboardLetter.transform.GetComponent<UnityEngine.UI.Image>();
+            }
+        }
+        Debug.Log("This letter does not exist on the current keyboard.");
+        return null;
     }
     private void Update()
     {
